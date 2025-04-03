@@ -1,12 +1,13 @@
-import {ProductItem} from "../types/productItem.ts";
+import {ProductItem} from "../../types/productItem.ts";
 import {Button, Card, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
+import {useCart} from "../ShoppingCart/useCart.tsx";
 
 interface CatalogCardProps{
     product: ProductItem;
-    onAddToCart?: (product: ProductItem) => void;
 }
 
-export const CatalogCard= ({product, onAddToCart}: CatalogCardProps) => {
+export const CatalogCard= ({product}: CatalogCardProps) => {
+    const {addToCart} = useCart();
     return(
         <div>
             <Card sx={{ maxWidth: 345 }}>
@@ -24,7 +25,7 @@ export const CatalogCard= ({product, onAddToCart}: CatalogCardProps) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Add to Cart</Button>
+                    <Button size="small" onClick={() => addToCart(product)}>Add to Cart</Button>
                 </CardActions>
             </Card>
         </div>
