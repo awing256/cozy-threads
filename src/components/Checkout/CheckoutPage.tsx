@@ -3,8 +3,6 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CheckoutForm} from "./CheckoutForm.tsx";
 import {useCart} from "../ShoppingCart/useCart.tsx";
-import {Route, Routes} from "react-router-dom";
-import {CheckoutCompletePage} from "./CheckoutCompletePage.tsx";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
@@ -28,26 +26,24 @@ export const CheckoutPage = () => {
             const data = await response.json();
             setClientSecret(data.clientSecret);
         };
-        if (amount > 0) {
-            fetchPaymentIntent();
-        }
-        else{
-            const secretFromUrl = new URLSearchParams(window.location.search).get(
-                'payment_intent_client_secret'
-            );
-            console.log(secretFromUrl)
-            if (secretFromUrl) setClientSecret(secretFromUrl);
-        }
+
+        fetchPaymentIntent();
+
+        // else{
+        //
+        //     const secretFromUrl = new URLSearchParams(window.location.search).get(
+        //         'payment_intent_client_secret'
+        //     );
+        //     console.log(window.location.search)
+        //     if (secretFromUrl) setClientSecret(secretFromUrl);
+        // }
     }, []);
 
     if (!clientSecret) return <div>Loading payment details...</div>
 
     return (
         <Elements stripe={stripePromise} options={{clientSecret: clientSecret}}>
-            <Routes>
-                <Route path="/" element={<CheckoutForm />} />
-                <Route path="/complete" element={<CheckoutCompletePage />} />
-            </Routes>
+            <CheckoutForm />
         </Elements>
     );
 };
