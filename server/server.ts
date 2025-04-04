@@ -1,7 +1,8 @@
+import path from 'path';
 const dotenv = require('dotenv');
 
-dotenv.config();
-
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+console.log(process.env.STRIPE_SECRET_KEY)
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2025-03-31.basil",
 });
