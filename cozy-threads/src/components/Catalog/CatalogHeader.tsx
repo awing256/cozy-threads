@@ -13,18 +13,12 @@ export default function CatalogHeader() {
                 <Toolbar>
                     <Typography
                         variant="h6"
-                        noWrap
-                        component="a"
                         sx={{
                             flexGrow: 1,
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            marginLeft: '20%'
+                            color: 'white',
                         }}
                     >
                         Cozy Threads
@@ -33,6 +27,7 @@ export default function CatalogHeader() {
                         <IconButton component={Link} aria-label="shopping cart" to="/cart">
                             <ShoppingCartIcon  />
                         </IconButton>
+
                     </Toolbar>
                 </Toolbar>
             </AppBar>

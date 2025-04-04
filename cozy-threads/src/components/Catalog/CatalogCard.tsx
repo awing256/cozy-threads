@@ -1,7 +1,7 @@
 import {ProductItem} from "../../types/productItem.ts";
-import {Box, Button, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
+import {Button, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 import {useCart} from "../ShoppingCart/useCart.tsx";
-import {StyledCard} from "../../styles/StyledCard.ts";
+import {StyledCatalogCard} from "../../styles/StyledCatalogCard.ts";
 
 interface CatalogCardProps{
     product: ProductItem;
@@ -10,9 +10,9 @@ interface CatalogCardProps{
 export const CatalogCard= ({product}: CatalogCardProps) => {
     const {addToCart} = useCart();
     return(
-        <StyledCard>
+        <StyledCatalogCard>
             <CardMedia
-                sx={{ height: 140 }}
+                sx={{ height: 250 }}
                 image={"/images/" + product.image}
                 title={product.title}
             />
@@ -24,9 +24,16 @@ export const CatalogCard= ({product}: CatalogCardProps) => {
                     {product.description}
                 </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: "auto"
+            }}>
                 <Button size="small" onClick={() => addToCart(product)}>Add to Cart</Button>
+                <Typography variant="h5" sx={{ color: 'grey' }}>
+                    ${product.price}
+                </Typography>
             </CardActions>
-        </StyledCard>
+        </StyledCatalogCard>
     )
 }
