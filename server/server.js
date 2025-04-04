@@ -18,12 +18,15 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/create-payment-intent', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://cozy-threads-frontend.onrender.com');
+    console.log('Attempting to set headers:', {
+        origin: res.getHeader('Access-Control-Allow-Origin'),
+    });
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: req.body.amount,
             currency: 'usd'
         });
-        res.header('Access-Control-Allow-Origin', 'https://cozy-threads-frontend.onrender.com');
         res.json({ clientSecret: paymentIntent.client_secret });
     } catch (err) {
         res.status(500).json({ error: err.message });
