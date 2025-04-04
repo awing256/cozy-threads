@@ -1,6 +1,8 @@
 # Cozy Threads 
 "For the finest clothing"
 
+https://cozy-threads-frontend.onrender.com/
+
 ## How to run locally
 1. Clone the repository into your local machine
 2. Create `.env` files in the `src/` and `server/` directories
