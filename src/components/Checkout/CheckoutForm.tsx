@@ -1,10 +1,12 @@
 import {FormEvent, useState} from 'react';
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 import SiteHeader from "../SiteHeader.tsx";
+import {useNavigate} from "react-router-dom";
 
 export const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -24,7 +26,8 @@ export const CheckoutForm = () => {
             elements,
             confirmParams: {
                 return_url: `${window.location.origin}/complete`,
-            }
+            },
+            redirect: 'if_required'
         });
 
 
@@ -38,6 +41,7 @@ export const CheckoutForm = () => {
             // Your customer will be redirected to your `return_url`. For some payment
             // methods like iDEAL, your customer will be redirected to an intermediate
             // site first to authorize the payment, then redirected to the `return_url`.
+            navigate('/complete?payment_success=true');
         }
     };
 
