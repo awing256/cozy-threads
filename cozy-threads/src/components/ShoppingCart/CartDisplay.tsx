@@ -1,15 +1,17 @@
 import {useCart} from "./useCart.tsx";
 import {CartCard} from "./CartCard.tsx";
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Button} from '@mui/material';
+import {Button, Typography} from '@mui/material';
+import SiteHeader from "../SiteHeader.tsx";
 
 export const CartDisplay = () => {
-    const {clearCart, cartItems} = useCart();
+    const {clearCart, cartItems, getTotalCost} = useCart();
 
     return(
-        <div>
-            {cartItems.map(product=>
-                <CartCard product={product}/>
+        <>
+            <SiteHeader />
+            {cartItems.map(cartItem=>
+                <CartCard cartItem={cartItem}/>
             )}
             <Button
                 variant="outlined"
@@ -19,7 +21,10 @@ export const CartDisplay = () => {
             >
                 Clear All Items From Cart
             </Button>
-        </div>
+            <Typography gutterBottom variant="h5" component="div">
+                Total Cost of Cart: ${getTotalCost()}
+            </Typography>
+        </>
     )
 
 

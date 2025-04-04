@@ -1,44 +1,46 @@
-import {ProductItem} from "../../types/productItem.ts";
-import DeleteIcon from '@mui/icons-material/Delete';
-import {Box, CardContent, CardMedia, IconButton, Typography} from "@mui/material";
+import {Button, CardActions, CardContent, CardMedia, Typography} from "@mui/material";
 import {useCart} from "./useCart.tsx";
-import {StyledCard} from "../../styles/StyledCard.ts";
+import {StyledCartCard} from "../../styles/StyledCartCard.ts";
+import {CartItem} from "./CartContext.ts";
 
 interface CartCardProps{
-    product: ProductItem;
+    cartItem: CartItem;
 }
 
-export const CartCard = ({product}: CartCardProps) =>{
+export const CartCard = ({cartItem}: CartCardProps) =>{
     const {deleteFromCart} = useCart();
 
     return(
-        <div>
-            <StyledCard sx={{ display: 'flex' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography component="div" variant="h5">
-                            {product.title}
-                        </Typography>
-                        <Typography
-                            variant="subtitle1"
-                            component="div"
-                            sx={{ color: 'text.secondary' }}
-                        >
-                            {product.price}
-                        </Typography>
-                    </CardContent>
-                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                        <IconButton aria-label="delete" onClick={() => deleteFromCart(product.id)}>
-                            <DeleteIcon />
-                        </IconButton>
-                    </Box>
-                </Box>
-                <CardMedia
-                    component="img"
-                    sx={{ width: 151 }}
-                    image={`/images/${product.image}`}
-                />
-            </StyledCard>
-        </div>
+        <StyledCartCard>
+            <CardMedia
+                sx={{ height: 250 }}
+                image={"/images/" + cartItem.product.image}
+                title={cartItem.product.title}
+            />
+            <CardContent >
+                <Typography gutterBottom variant="h5" component="div">
+                    {cartItem.product.title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'grey' }}>
+                    {cartItem.product.description}
+                </Typography>
+            </CardContent>
+            <CardActions sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: "auto"
+            }}>
+                <Button size="small" onClick={() => deleteFromCart(cartItem.product.id)}>Delete from Cart</Button>
+                <div>
+                    <Typography variant="h5" sx={{ color: 'grey' }}>
+                        Amount: {cartItem.count}
+                    </Typography>
+                    <Typography variant="h5" sx={{ color: 'grey' }}>
+                        {cartItem.count > 1 ? `Total: $${cartItem.count * cartItem.product.price}`: `$${cartItem.product.price}`}
+                    </Typography>
+                </div>
+
+            </CardActions>
+        </StyledCartCard>
     )
 }
