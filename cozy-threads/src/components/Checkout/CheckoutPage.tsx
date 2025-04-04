@@ -4,7 +4,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {CheckoutForm} from "./CheckoutForm.tsx";
 import {useCart} from "../ShoppingCart/useCart.tsx";
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 export const CheckoutPage = () => {
     const [clientSecret, setClientSecret] = useState();
@@ -27,8 +27,10 @@ export const CheckoutPage = () => {
         fetchPaymentIntent();
     }, []);
 
+    if (!clientSecret) return <div>Loading payment details...</div>
+
     return (
-        <Elements stripe={stripePromise} options={clientSecret}>
+        <Elements stripe={stripePromise} options={{clientSecret}}>
             <CheckoutForm />
         </Elements>
     );
