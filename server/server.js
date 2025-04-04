@@ -7,23 +7,14 @@ dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = express();
 
-const allowedOrigins = [
-    'https://cozy-threads-frontend.onrender.com',
-    'http://localhost:5173'
-];
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'The CORS policy for this site does not allow access from the specified origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
+    origin: [
+        'http://localhost:5173',
+        'https://cozy-threads-frontend.onrender.com',
+    ],
     credentials: true,
-    methods: ['POST', 'GET'],
+    methods: ['POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
