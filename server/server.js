@@ -23,7 +23,7 @@ app.use(cors({
         return callback(null, true);
     },
     credentials: true,
-    methods: ['POST'],
+    methods: ['POST', 'GET'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
