@@ -36,7 +36,7 @@ export const CartCard = ({cartItem}: CartCardProps) =>{
                         Amount: {cartItem.count}
                     </Typography>
                     <Typography variant="h5" sx={{ color: 'grey' }}>
-                        {cartItem.count > 1 ? `Total: $${cartItem.count * cartItem.product.price}`: `$${cartItem.product.price}`}
+                        {cartItem.count > 1 ? `Total: $${(cartItem.count * cartItem.product.price).toFixed(2)}`: `$${cartItem.product.price}`}
                     </Typography>
                 </div>
 

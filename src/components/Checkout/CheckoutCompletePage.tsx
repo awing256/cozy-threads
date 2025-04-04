@@ -1,10 +1,16 @@
 // import {useState, useEffect} from 'react';
 // import {useStripe} from '@stripe/react-stripe-js';
 import SiteHeader from "../SiteHeader.tsx";
+import {useCart} from "../ShoppingCart/useCart.tsx";
+import {useEffect} from "react";
 
 
 
 export const CheckoutCompletePage = () => {
+    const {clearCart} = useCart()
+    useEffect(() => {
+        clearCart();
+    }, []);
     // const stripe = useStripe();
     // const [message, setMessage] = useState<string | null>();
 
