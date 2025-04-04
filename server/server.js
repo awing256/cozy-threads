@@ -8,8 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = express();
 
 const allowedOrigins = [
-    'https://your-frontend.onrender.com', // Your live frontend URL
-    'http://localhost:5173'              // Local development
+    'https://cozy-threads-frontend.onrender.com',
+    'http://localhost:5173'
 ];
 
 app.use(cors({
@@ -23,7 +23,7 @@ app.use(cors({
         return callback(null, true);
     },
     credentials: true,
-    methods: ['POST'],
+    methods: ['POST', 'GET'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
