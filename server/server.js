@@ -9,12 +9,9 @@ const app = express();
 
 
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'https://cozy-threads-frontend.onrender.com',
-    ],
+    origin: 'https://cozy-threads-frontend.onrender.com',
     credentials: true,
-    methods: ['POST'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
