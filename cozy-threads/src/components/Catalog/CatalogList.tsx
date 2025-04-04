@@ -10,7 +10,7 @@ export const CatalogList = () => {
             <SiteHeader />
             <Grid container spacing={2}>
                 {catalogData.map(product=>
-                    <Grid size={4}>
+                    <Grid size={4} key={product.id}>
                         <CatalogCard product={product}/>
                     </Grid>
                 )}

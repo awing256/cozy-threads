@@ -14,7 +14,7 @@ export const CartDisplay = () => {
         <>
             <SiteHeader />
             {cartItems.map(cartItem=>
-                <CartCard cartItem={cartItem}/>
+                <CartCard cartItem={cartItem} key={cartItem.product.id}/>
             )}
             <Toolbar sx={{
                 display: 'flex',
