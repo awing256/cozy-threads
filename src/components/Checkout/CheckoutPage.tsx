@@ -35,6 +35,7 @@ export const CheckoutPage = () => {
             const secretFromUrl = new URLSearchParams(window.location.search).get(
                 'payment_intent_client_secret'
             );
+            console.log(secretFromUrl)
             if (secretFromUrl) setClientSecret(secretFromUrl);
         }
     }, []);
