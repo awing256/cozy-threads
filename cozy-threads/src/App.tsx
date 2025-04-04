@@ -8,18 +8,18 @@ import { CatalogList } from './components/Catalog/CatalogList.tsx';
 function App() {
 
   return (
-    <div>
+    <>
         <CartProvider>
-            <Router>
-                <Container maxWidth="lg">
-                    <Routes>
-                        <Route path="/" element={<CatalogList />} />
-                        <Route path="/cart" element={<CartDisplay />} />
-                    </Routes>
-                </Container>
-            </Router>
+            <Container maxWidth="xl">
+                <Router>
+                        <Routes>
+                            <Route path="/" element={<CatalogList />} />
+                            <Route path="/cart" element={<CartDisplay />} />
+                        </Routes>
+                </Router>
+            </Container>
         </CartProvider>
-    </div>
+    </>
   )
 }
 

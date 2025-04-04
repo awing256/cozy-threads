@@ -1,20 +1,21 @@
 import {catalogData} from "../../data/catalogData.ts";
 import {CatalogCard} from "./CatalogCard.tsx";
-import {IconButton, Toolbar} from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link } from "react-router-dom";
+
+import CatalogHeader from "./CatalogHeader.tsx";
+import {Grid} from "@mui/material";
 
 export const CatalogList = () => {
     return(
-        <div>
-            <Toolbar>
-                <IconButton component={Link} aria-label="shopping cart" to="/cart">
-                    <ShoppingCartIcon  />
-                </IconButton>
-            </Toolbar>
-            {catalogData.map(product=>
-                <CatalogCard product={product}/>
-            )}
-        </div>
+        <>
+            <CatalogHeader />
+            <Grid container spacing={2}>
+                {catalogData.map(product=>
+                    <Grid size={4}>
+                        <CatalogCard product={product}/>
+                    </Grid>
+                )}
+            </Grid>
+
+        </>
     )
 }
