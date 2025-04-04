@@ -22,7 +22,7 @@ export const CartDisplay = () => {
                 width: '100%'
             }}>
                 <Typography gutterBottom variant="h5" component="div">
-                    Total Cost of Cart: ${getTotalCost().toFixed(2)}
+                    Total Cost of Cart: ${getTotalCost()}
                 </Typography>
                 <Button
                     variant="outlined"

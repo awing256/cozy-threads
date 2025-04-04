@@ -34,7 +34,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         cartItems.forEach(item => {
             total += item.product.price * item.count;
         });
-        return total;
+        return Number(total.toFixed(2));
     }
 
     return (
