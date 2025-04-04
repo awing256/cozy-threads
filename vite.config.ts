@@ -13,6 +13,11 @@ export default defineConfig(({ mode }) => {
             mode === 'production'
                 ? process.env.VITE_STRIPE_PUBLIC_KEY
                 : env.VITE_STRIPE_PUBLIC_KEY
+        ),
+        VITE_API_BASE_URL: JSON.stringify(
+            mode === 'production'
+                ? 'https://cozy-threads-backend-is4m.onrender.com'
+                : 'http://localhost:3000'
         )
       }
     },

@@ -12,6 +12,7 @@ export const CheckoutPage = () => {
     const [clientSecret, setClientSecret] = useState<string | null>();
     const {getTotalCost} = useCart();
 
+    console.log(API_BASE_URL)
 
     useEffect(() => {
         const amount = Math.round(getTotalCost() * 100);
