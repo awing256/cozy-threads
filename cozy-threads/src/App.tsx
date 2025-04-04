@@ -16,7 +16,7 @@ function App() {
                         <Routes>
                             <Route path="/" element={<CatalogList />} />
                             <Route path="/cart" element={<CartDisplay />} />
-                            <Route path="/checkout" element={<CheckoutPage />} />
+                            <Route path="/checkout/*" element={<CheckoutPage />} />
                         </Routes>
                 </Router>
             </Container>

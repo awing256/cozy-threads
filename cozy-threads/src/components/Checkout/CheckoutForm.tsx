@@ -1,5 +1,6 @@
 import {FormEvent, useState} from 'react';
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
+import SiteHeader from "../SiteHeader.tsx";
 
 export const CheckoutForm = () => {
     const stripe = useStripe();
@@ -22,8 +23,8 @@ export const CheckoutForm = () => {
             //`Elements` instance that was used to create the Payment Element
             elements,
             confirmParams: {
-                return_url: 'https://example.com/order/123/complete',
-            },
+                return_url: `${window.location.origin}/checkout/complete`,
+            }
         });
 
 
@@ -40,12 +41,17 @@ export const CheckoutForm = () => {
         }
     };
 
-    return (
+    if (!stripe) return <div>Loading payment details...</div>
+
+    return(
+    <>
+        <SiteHeader/>
         <form onSubmit={handleSubmit}>
             <PaymentElement />
             <button disabled={!stripe}>Submit</button>
             {/* Show error message to your customers */}
             {errorMessage && <div>{errorMessage}</div>}
         </form>
+    </>
     )
 };
